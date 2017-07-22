@@ -15,5 +15,25 @@
             {id : 3, name : '打豆豆'}
           ]
 -->
+<div id="test">
+  <ul>
+    <li v-for="todo in todos">
+      {{todo.id}}----{{todo.name}}
+    </li>
+  </ul>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#test',
+    data: {
+      todos: [
+        {id : 1, name : '吃饭'},
+        {id : 2, name : '睡觉'},
+        {id : 3, name : '打豆豆'}
+      ]
+    }
+  })
+</script>
 </body>
 </html>

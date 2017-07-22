@@ -19,11 +19,36 @@
     事件处理函数: methods
 -->
 <div id="app">
+  <input type="text" v-model="inputTodo" @keyup.enter="addTodo">
+  <ul>
+    <li v-for="(todo,index) in todos">
+      {{todo}}
+      <button @click="removeTodo(index)">X</button>
+    </li>
+  </ul>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  new Vue({
+    el : '#app',
+    data : {
+      inputTodo: '',
+      todos: ['吃饭', '睡觉', 'Coding']
+    },
+    methods : {
+      removeTodo (index) {
+        this.todos.splice(index, 1)
+      },
+      addTodo () {
+        if(!this.inputTodo.trim()) {
+          return
+        }
+        this.todos.unshift(this.inputTodo)
+        this.inputTodo = ''
+      }
+    }
+  })
 </script>
 </body>
 </html>

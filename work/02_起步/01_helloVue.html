@@ -17,6 +17,18 @@
 
   注意: 需要在webstorm中安装vue.js插件
 -->
-
+<div id="test">
+  <input type="text" v-model="msg">
+  <p>{{msg}}</p>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#test',  // element  选择器
+    data: {
+      msg: 'atguigu'
+    }
+  })
+</script>
 </body>
 </html>

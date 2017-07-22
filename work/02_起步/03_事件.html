@@ -15,12 +15,25 @@
     }
 -->
 <div id="app">
-
+  <p>{{content}}</p>
+  <!--<button v-on:click="reverse">倒序</button>-->
+  <button @click="reverse()">倒序</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  new Vue({
+    el : '#app',
+    data : {
+      content: 'I Like You!'
+    },
+    methods: {
+      reverse () {
+        // 更新数据
+        this.content = this.content.split('').reverse().join('')
+      }
+    }
+  })
 </script>
 </body>
 </html>
