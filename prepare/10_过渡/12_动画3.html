@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    span {
+      display: inline-block;
+    }
+
+    .bounce-enter-active {
+      -webkit-animation: bounce-in .5s;
+      animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+      -webkit-animation: bounce-out .5s;
+      animation: bounce-out .5s;
+    }
+    @keyframes bounce-in {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+    @keyframes bounce-out {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+    }
+    @-webkit-keyframes bounce-in {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+    @-webkit-keyframes bounce-out {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="example-2">
+  <button @click="show = !show">Toggle show</button>
+  <br>
+  <transition name="bounce">
+    <span v-if="show">Look at me!</span>
+  </transition>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#example-2',
+    data: {
+      show: true
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>14_自定义指令</title>
+</head>
+<body>
+
+<!--
+1. 注册全局指令
+  Vue.directive('my-directive', function(el, binding){
+    el.innerHTML = binding.value.toupperCase();
+  })
+2. 注册局部指令
+  directives : {
+    'my-directive' : {
+        bind (el, binding) {
+          el.innerHTML = binding.value.toupperCase()
+        }
+    }
+  }
+3. 使用指令:
+  v-my-directive='xxx'
+-->
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
