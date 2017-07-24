@@ -15,50 +15,75 @@
 3. 自动去除两端空格: .trim
 -->
 <div id="demo">
-  <input type="text"><br>
-  <textarea></textarea>
+  <p>{{msg}}</p>
+  <input type="text" v-model="msg"><br>
+  <textarea v-model="msg"></textarea>
 
   <hr>
-  <input type="checkbox" id="checkbox">
-  <label for="checkbox"></label>
+  <input type="checkbox" id="checkbox" v-model="ok">
+  <label for="checkbox">{{ok}}</label>
 
   <hr>
-  <input type="checkbox" id="jack">
+  <input type="checkbox" id="jack" value="JACK" v-model="boys">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john">
+  <input type="checkbox" id="john" value="JOHN" v-model="boys">
   <label for="john">John</label>
-  <input type="checkbox" id="mike">
+  <input type="checkbox" id="mike" value="MIKE" v-model="boys">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names:</span>
+  <span>Checked names: {{boys}}</span>
 
   <hr>
-  <input type="radio" id="female">
+  <input type="radio" id="female" value="male" v-model="sex">
   <label for="female">MALE</label>
   <br>
-  <input type="radio" id="male">
+  <input type="radio" id="male" value="female" v-model="sex">
   <label for="male">FEMALE</label>
   <br>
-  <span>Sex: </span>
+  <span>Sex: {{sex}}</span>
 
   <hr>
-  <select>
+  <select v-model="cityId">
     <option value="">未选择</option>
+    <option v-for="city in citys" :value="city.id">{{city.name}}</option>
   </select>
-  <span>selection:</span>
+  <span>selection: {{cityId}}</span>
 
   <hr>
   <!-- 在 "change" 而不是 "input" 事件中更新 -->
-  <input placeholder="失去焦点才更新">
-  <p>输入的数据为: </p>
+  <input placeholder="失去焦点才更新" v-model.lazy="msg2">
+  <p>输入的数据为: {{msg2}}</p>
   <!--自动trim-->
-  <input placeholder="自动trim">
-  <p>输入的数据为:</p>
+  <input placeholder="自动trim" v-model.trim="msg3">
+  <p>输入的数据为:----{{msg3}}----</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#demo',
+    data : {
+      msg: 'atguigu.com',
+      ok: true,
+      boys: ['JOHN'],
+      sex: 'female',
+      citys: [
+        {id: 1, name: 'BJ'},
+        {id: 2, name: 'SZ'},
+        {id: 3, name: 'SH'},
+      ],
+      cityId: '2',
+      msg2: '',
+      msg3: ''
+    },
+    methods : {
 
+    },
+
+    computed : {
+
+    }
+  })
 </script>
 </body>
 </html>
