@@ -12,14 +12,44 @@
 -->
 
 <div id="demo">
-
   <h2>测试: v-for 遍历数组</h2>
+  <ul>
+    <li v-for="(p, index) in persons" :key="index">
+      {{index}}---{{p.name}}---{{p.age}}
+      ---<button @click="removeP(index)">删除</button>
+      ---<button @click="updateP(index, {name:'Jack', age:23})">更新</button>
+    </li>
+  </ul>
   <h2>测试: v-for 遍历对象</h2>
+  <ul>
+    <li v-for="(value, key) in persons[1]">
+      {{key}}----{{value}}
+    </li>
+  </ul>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  new Vue({
+    el : '#demo',
+    data : {
+      persons: [
+        {name: 'Tom', age:12},
+        {name: 'Tom2', age:13},
+        {name: 'Tom3', age:14}
+      ]
+    },
+    methods : {
+      removeP (index) {
+        this.persons.splice(index, 1) // splice已经不是数组的原生方法, 而是包装后的方法
+      },
+      updateP (index, newP) {
+        // 通过下标修改数组内部元素, 不能监视到
+        //this.persons[index] = newP
+        this.persons.splice(index, 1, newP)
+      }
+    }
+  })
 </script>
 </body>
 </html>
