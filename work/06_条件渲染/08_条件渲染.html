@@ -19,12 +19,38 @@
 <div id="demo">
   <h1>测试: 切换一个元素</h1>
 
+  <p v-if="ok">成功了...</p>
+  <p v-else>失败啦!!!!</p>
+  <h2 v-show="ok">成功了2222...</h2>
+  <h2 v-show="!ok">失败啦2222...</h2>
+
   <h1>测试: 切换多个元素</h1>
 
+  <template v-if="ok" >
+    <p>xxxxxx</p>
+    <p>xxxxxx</p>
+    <p>xxxxxx</p>
+    <p>xxxxxx</p>
+    <p>xxxxxx</p>
+  </template>
+
+
+  <button @click="toggle">切换</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#demo',
+    data : {
+      ok: true
+    },
+    methods: {
+      toggle () {
+        this.ok = !this.ok
+      }
+    }
+  })
 </script>
 </body>
 </html>
