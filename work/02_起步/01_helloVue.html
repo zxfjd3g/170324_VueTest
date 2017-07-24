@@ -23,12 +23,16 @@
 </div>
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
+  var vm = new Vue({
     el: '#test',  // element  选择器
     data: {
       msg: 'atguigu'
     }
   })
+
+  console.log(vm)
+  console.log(vm.msg)
+  console.log(vm.$data.msg)
 </script>
 </body>
 </html>

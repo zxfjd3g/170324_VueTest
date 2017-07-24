@@ -22,21 +22,42 @@
     v-on:keyup.enter='xxx'
   简洁写法:
     @keyup='xxx'
-    @keyup.enter='xxx'
+    @keyup.enter='xxx($event)'
 -->
 <div id="app">
 
   <h2>1. 表达式</h2>
+  <p>{{msg}}</p>
+  <p>{{msg.toUpperCase()}}</p>
 
   <h2>2. 强制数据绑定:</h2>
+  <!--<a v-bind:href="url">百度一下 </a><br>-->
+  <a :href="url">百度一下 </a><br>
 
   <h2>3. 事件监听:</h2>
-
+  <input type="text" @keyup.enter="test1">
+  <input type="text" @keyup.13="test2('abc', 123, $event)">
+<!--模板页面中能直接访问是vm(Vue的实例对象)中的所有数据-->
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  const vm = new Vue({
+    el : '#app',
+    data : {
+      msg: 'I Will Back',
+      url: 'http://www.baidu.com'
+    },
+    methods : {
+      test1 (event) { // 默认会传入event对象
+        alert(event.target.value+'---'+event.keyCode)
+      },
+      test2 (msg, num, event) {
+        alert(msg + '---' + num + '---' + event.target.value)
+      }
+    }
+  })
+  console.log(vm.msg)  // 数据代理
 </script>
 </body>
 </html>

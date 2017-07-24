@@ -8,19 +8,94 @@
 
 <!--
 vue对象的生命周期
-1. 初始化显示
-  * new vue()
-  * created() : 在此启动异步任务(ajax请求, 定时器)
-  * beforeCompiled()
-  * compiled()
-  * ready()
-2. 销毁vue实例: vm.$destory()
+1. 初始化显示:  new vue()
+  * beforeCreate()
+  * created(): 启动定时器, 绑定事件监听, 发送ajax请求
+  * beforeMount()
+  * mounted()
+2. 更新: this.xxx = value
+  * beforeUpdate()
+  * updated()
+3. 销毁vue实例: vm.$destory() : 数据绑定没有了--不能再自动更新界面
   * beforeDestory(): 在此做一些收尾的工作: 如清理定时器
   * destoryed()
+常用的方法:
+  created(): 启动定时器, 绑定事件监听, 发送ajax请求
+  beforeDestory(): 在此做一些收尾的工作: 如清理定时器
 -->
+
+<div id="demo">
+  <button @click="destroyVM">destroy</button>
+  <p v-show="isShow">xfzhang</p>
+  {{xxx}}
+</div>
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#demo',
+    data : {
+      isShow: true,
+      xxx: 'aaa'
+    },
+    methods : {
+      destroyVM () {
+        console.log('destroyVM()')
+        this.$destroy()
+        this.xxx = 'ccc'
+      }
+    },
+    // 初始化阶段
+    beforeCreate () {
+      console.log('beforeCreate()', this.xxx)
+    },
+    created () {
+      console.log('created()', this.xxx)
+      // 延迟更新xxx
+      /*
+      setTimeout(function () {
+        this.xxx = 'bbb'
+      }.bind(this), 1000)
+*/
+      setTimeout(() => {
+        console.log('--------')
+        this.xxx = 'bbb'
+      }, 1000)
 
+      // 启动定时器
+      this.intervalId = setInterval(() => {
+        console.log('+++++++')
+        this.isShow = !this.isShow
+      }, 1000)
+    },
+    beforeMount () {
+      console.log('beforeMount()', this.xxx)
+    },
+    mounted () {
+      console.log('mounted()', this.xxx)
+    },
+
+    // 更新阶段
+      // 更新界面之前
+    beforeUpdate () { // 页面中必须使用了xxx
+      console.log('beforeUpdate()', this.xxx)
+    },
+      // 更新界面之后
+    updated () {
+      console.log('updated()', this.xxx)
+    },
+
+    // 死亡阶段
+    beforeDestroy () {
+      console.log('beforeDestroy')
+
+      // 清理定时器
+      clearInterval(this.intervalId)
+
+    },
+    destroyed () {
+      console.log('destroyed')
+    },
+  })
 </script>
 </body>
 </html>
