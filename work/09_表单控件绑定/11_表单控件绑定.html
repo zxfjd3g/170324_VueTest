@@ -15,7 +15,45 @@
 3. 自动去除两端空格: .trim
 -->
 <div id="demo">
+  <input type="text"><br>
+  <textarea></textarea>
 
+  <hr>
+  <input type="checkbox" id="checkbox">
+  <label for="checkbox"></label>
+
+  <hr>
+  <input type="checkbox" id="jack">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names:</span>
+
+  <hr>
+  <input type="radio" id="female">
+  <label for="female">MALE</label>
+  <br>
+  <input type="radio" id="male">
+  <label for="male">FEMALE</label>
+  <br>
+  <span>Sex: </span>
+
+  <hr>
+  <select>
+    <option value="">未选择</option>
+  </select>
+  <span>selection:</span>
+
+  <hr>
+  <!-- 在 "change" 而不是 "input" 事件中更新 -->
+  <input placeholder="失去焦点才更新">
+  <p>输入的数据为: </p>
+  <!--自动trim-->
+  <input placeholder="自动trim">
+  <p>输入的数据为:</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
