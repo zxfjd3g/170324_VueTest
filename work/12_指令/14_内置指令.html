@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>14_内置指令</title>
+  <style>
+    [v-cloak] {
+      display: none
+    }
+  </style>
 </head>
 <body>
 <!--
@@ -18,10 +23,34 @@
   ref : 为某个元素注册一个唯一标识, vue对象通过$els属性访问这个元素对象
   v-cloak : 使用它防止闪现表达式, 与css配合: [v-cloak] { display: none }
 -->
+  <div id="demo">
+    <p>{{msg}}</p>
+    <p v-text="msg"></p>
+    <p v-html="msg"></p>
+
+    <img :src="imgUrl" alt="logo">
+
+    <p ref="content">xxxxxx</p>
+    <button @click="read">读取</button>
+
+    <p v-cloak>{{msg}}</p>
+  </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  new Vue({
+    el : '#demo',
+    data : {
+      msg: '<a href="http://www.atguigu.com">尚硅谷</a>',
+      imgUrl: 'https://cn.vuejs.org/images/logo.png'
+    },
+    methods : {
+      read () {
+        const pEle = this.$refs.content
+        alert(pEle.innerHTML)
+      }
+    }
+  })
 </script>
 </body>
 </html>

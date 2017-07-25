@@ -23,9 +23,42 @@
   v-my-directive='xxx'
 -->
 
+<div id="demo1">
+  <p v-upper-text="msg1"></p>
+  <p v-lower-html="msg1"></p>
+</div>
+
+<div id="demo2">
+  <p v-upper-text="msg2"></p>
+  <p v-lower-html="msg2"></p><!--不可以-->
+</div>
+
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
 
+  // 注册全局指令
+  Vue.directive('upper-text', function (el, binding) {
+    el.textContent =  binding.value.toUpperCase()
+  })
+
+  new Vue({
+    el : '#demo1',
+    data : {
+      msg1: 'I Will Back'
+    },
+    directives: { // 注册局部指令
+      'lower-html': function (el, binding) {
+        el.innerHTML =  binding.value.toLowerCase()
+      }
+    }
+  })
+
+  new Vue({
+    el : '#demo2',
+    data : {
+      msg2: 'I Like You'
+    }
+  })
 </script>
 </body>
 </html>
