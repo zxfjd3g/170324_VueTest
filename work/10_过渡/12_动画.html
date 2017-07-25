@@ -3,11 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>15_动画</title>
+  <style>
+    /*
+    1. transition定义在哪个class中?
+    2. 隐藏的样式定义在哪个class中?
+    */
+    .xxx-enter-active, .xxx-leave-active {/*这2个代表的是enter/leave的过程*/
+      transition: opacity 1s
+    }
+    .xxx-enter, .xxx-leave-to { /*这2个class代表的都不可见的状态*/
+      opacity: 0
+    }
+  </style>
 </head>
 <body>
-
+<div id="test">
+  <button @click="isShow=!isShow">toggle</button>
+  <transition name="xxx">
+    <p v-show="isShow">Hello atguigu</p>
+  </transition>
+</div>
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#test',
+    data : {
+      isShow: true
+    }
+  })
 </script>
 </body>
 </html>
